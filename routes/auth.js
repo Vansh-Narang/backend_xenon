@@ -7,17 +7,20 @@ const router = express.Router();
 
 // Register
 router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
-
     try {
+        const { name, email, password } = req.body;
+
+        // More logging
+        console.log("Received data:", req.body);
+
         const user = new User({ name, email, password });
         await user.save();
         res.status(201).json({ msg: 'User registered' });
     } catch (err) {
-        res.status(500).json(err);
+        console.error('Registration error:', err);
+        res.status(500).json({ error: 'Server error' });
     }
 });
-
 // Login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
