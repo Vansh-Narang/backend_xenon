@@ -13,7 +13,7 @@ app.use(cors({
 }));
 
 
-mongoose.connect("mongodb+srv://vanshnarang49906:1234VANSH@cluster0.mugvr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
